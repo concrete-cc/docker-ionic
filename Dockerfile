@@ -5,6 +5,7 @@ RUN apt-get update &&\
     apt-get clean
 
 RUN pip install awscli --upgrade --user
+ENV PATH=~/.local/bin:$PATH
 
 RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -16,3 +17,5 @@ ENV LANG=en_US.UTF-8
 
 RUN npm install -g ionic@2.1.18 cordova code-push-cli
 RUN gem install fastlane -NV
+
+ENTRYPOINT ["/bin/bash"]
