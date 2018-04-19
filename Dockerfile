@@ -1,4 +1,4 @@
-FROM node:6-stretch
+FROM node:8-stretch
 
 RUN apt-get update &&\
     apt-get install -y locales ruby-full python-pip &&\
@@ -15,7 +15,7 @@ RUN locale-gen en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
-RUN npm install -g ionic@2.1.18 cordova code-push-cli
+RUN npm install -g ionic@2 ionic-app-lib@2 code-push-cli cordova@6
 RUN gem install fastlane -NV
 
 ENTRYPOINT ["/bin/bash"]
