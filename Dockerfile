@@ -1,12 +1,7 @@
 FROM node:8-stretch
 
 RUN apt-get update &&\
-    apt-get install -y locales ruby-full python-pip software-properties-common &&\
-    apt-get clean
-
-RUN apt-add-repository ppa:openjdk-r/ppa
-RUN apt-get update &&\
-    apt-get install -y openjdk-8-jdk gradle &&\
+    apt-get install -y locales ruby-full python-pip software-properties-common openjdk-8-jdk gradle &&\
     apt-get clean
 
 RUN pip install awscli --upgrade --user
