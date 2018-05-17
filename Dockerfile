@@ -33,8 +33,8 @@ RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID
 # Install Gradle
 RUN wget https://services.gradle.org/distributions/gradle-4.7-bin.zip && \
     mkdir /opt/gradle && \
-    unzip -d /opt/gradle gradle-3.4.1-bin.zip
-ENV PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
+    unzip -d /opt/gradle gradle-4.7-bin.zip
+ENV PATH=$PATH:/opt/gradle/gradle-4.7/bin
 
 # Install Android NDK
 RUN wget http://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip && \
