@@ -20,21 +20,27 @@ RUN npm install -g ionic@2 code-push-cli cordova@6
 RUN gem install fastlane -NV
 
 # Install Android SDK
-RUN wget https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
-RUN tar -xvzf android-sdk_r24.4.1-linux.tgz
-RUN mv android-sdk-linux /usr/local/android-sdk
-RUN rm android-sdk_r24.4.1-linux.tgz
+RUN wget https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
+    tar -xvzf android-sdk_r24.4.1-linux.tgz && \
+    mv android-sdk-linux /usr/local/android-sdk && \
+    rm android-sdk_r24.4.1-linux.tgz
 
 ENV ANDROID_COMPONENTS platform-tools,android-23,build-tools-23.0.2,build-tools-24.0.0
 
 # Install Android tools
 RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID_COMPONENTS}" --no-ui -a
 
+# Install Gradle
+RUN wget https://services.gradle.org/distributions/gradle-4.7-bin.zip && \
+    mkdir /opt/gradle && \
+    unzip -d /opt/gradle gradle-3.4.1-bin.zip
+ENV PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
+
 # Install Android NDK
-RUN wget http://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip
-RUN unzip android-ndk-r12-linux-x86_64.zip
-RUN mv android-ndk-r12 /usr/local/android-ndk
-RUN rm android-ndk-r12-linux-x86_64.zip
+RUN wget http://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip && \
+    unzip android-ndk-r12-linux-x86_64.zip && \
+    mv android-ndk-r12 /usr/local/android-ndk && \
+    rm android-ndk-r12-linux-x86_64.zip
 
 # Environment variables
 ENV ANDROID_HOME /usr/local/android-sdk
